@@ -3,24 +3,20 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLanguage } from '../context/LanguageContext'
-import Image from 'next/image'
 
 export default function VideosPage() {
   const router = useRouter()
-  const { language, t } = useLanguage()
-  
-  // Redirect to men's videos by default
+  const { t } = useLanguage()
+
   useEffect(() => {
-    router.push('/videos/men')
+    router.replace('/videos/male')
   }, [router])
 
   return (
-    <div className="flex justify-center items-center min-h-[60vh]">
+    <div className="flex justify-center items-center min-h-[60vh] bg-[#fdf8ed]">
       <div className="text-center">
-        <div className="mb-6">
-          <Image src="/images/novaweb-logo.png" alt="NovaWeb" width={160} height={40} className="mx-auto" />
-        </div>
-        <h1 className="text-3xl font-bold mb-4">{t('loading')}...</h1>
+        <div className="w-10 h-10 border-2 border-[#c9a84c] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <h1 className="text-2xl font-['Cormorant_Garamond'] text-[#2a1f0e]">{t('loading')}</h1>
       </div>
     </div>
   )

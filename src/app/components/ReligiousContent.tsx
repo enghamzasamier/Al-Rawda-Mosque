@@ -1,70 +1,82 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useLanguage } from '../context/LanguageContext'
 
 const religiousContent = [
   {
     type: 'quran',
+    typeLabel: { en: 'Quranic Verse', ar: 'آية قرآنية' },
     arabic: 'إِنَّمَا الصَّدَقَاتُ لِلْفُقَرَاءِ وَالْمَسَاكِينِ وَالْعَامِلِينَ عَلَيْهَا وَالْمُؤَلَّفَةِ قُلُوبُهُمْ وَفِي الرِّقَابِ وَالْغَارِمِينَ وَفِي سَبِيلِ اللَّهِ وَابْنِ السَّبِيلِ فَرِيضَةً مِنَ اللَّهِ وَاللَّهُ عَلِيمٌ حَكِيمٌ',
     translation: 'Charities are only for the poor and the needy, and those who collect them, and those whose hearts are to be reconciled, and to free the captives and the debtors, and for the cause of Allah, and for the wayfarer; a duty imposed by Allah. Allah is Knower, Wise.',
-    reference: 'Quran 9:60',
+    reference: 'القرآن 9:60',
   },
   {
     type: 'hadith',
-    arabic: 'مَثَلُ الْمُنْفِقِ وَالْبَخِيلِ مَثَلُ رَجُلَيْنِ عَلَيْهِمَا جُبَّتَانِ مِنْ حَدِيدٍ مِنْ ثَدْيَيْهِمَا إِلَى تَرَاقِيهِمَا فَأَمَّا الْمُنْفِقُ فَلَا يُنْفِقُ إِلَّا سَبَغَتْ أَوْ وَفَرَتْ عَلَى جِلْدِهِ حَتَّى تُخْفِيَ بَنَانَهُ وَتَعْفُوَ أَثَرَهُ',
+    typeLabel: { en: 'Hadith', ar: 'حديث شريف' },
+    arabic: 'مَثَلُ الَّذِينَ يُنْفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنْبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنْبُلَةٍ مِائَةُ حَبَّةٍ وَاللَّهُ يُضَاعِفُ لِمَنْ يَشَاءُ',
     translation: 'The example of those who spend their wealth in the way of Allah is like a seed which grows seven spikes, in each spike is a hundred grains. And Allah multiplies His reward for whom He wills.',
-    reference: 'Sahih al-Bukhari 1413',
+    reference: 'صحيح البخاري 1413',
   },
   {
     type: 'quran',
+    typeLabel: { en: 'Quranic Verse', ar: 'آية قرآنية' },
     arabic: 'وَمَا تُنْفِقُوا مِنْ خَيْرٍ يُوَفَّ إِلَيْكُمْ وَأَنْتُمْ لَا تُظْلَمُونَ',
     translation: 'And whatever you spend in good, it will be repaid to you in full, and you will not be wronged.',
-    reference: 'Quran 2:272',
+    reference: 'القرآن 2:272',
   },
 ]
 
 export default function ReligiousContent() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const { top } = sectionRef.current.getBoundingClientRect()
-        const scroll = window.scrollY
-        if (top < window.innerHeight && top > -sectionRef.current.offsetHeight) {
-          sectionRef.current.style.transform = `translateY(${scroll * 0.1}px)`
-        }
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const { language, t } = useLanguage()
+  const isRTL = language === 'ar'
 
   return (
-    <section ref={sectionRef} className="py-16 px-4 bg-[#f5f5dc] parallax">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 px-4 bg-[#2a1f0e]" dir={isRTL ? 'rtl' : 'ltr'}>
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl mb-4 font-['Cormorant_Garamond']">
-            Words of Wisdom
+          <h2 className="text-3xl md:text-5xl mb-3 font-['Cormorant_Garamond'] text-[#fdf8ed]">
+            {t('wordsOfWisdom')}
           </h2>
-          <div className="arabic-calligraphy mb-8">
-            الحكمة ضالة المؤمن
-          </div>
+          <div className="arabic-calligraphy text-3xl mb-1">الحكمة ضالة المؤمن</div>
+          {language === 'en' && (
+            <p className="text-[#fdf8ed]/40 text-sm italic">Wisdom is the lost property of the believer</p>
+          )}
+          <div className="w-16 h-px bg-[#c9a84c]/50 mx-auto mt-5" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {religiousContent.map((content, index) => (
-            <div key={index} className="card parallax-content">
-              <div className="arabic-text text-2xl mb-4 text-right">
+            <div
+              key={index}
+              className="bg-[#1a1208] rounded-2xl p-6 border border-[#c9a84c]/20
+                         hover:border-[#c9a84c]/50 transition-all duration-300
+                         hover:shadow-[0_0_20px_rgba(201,168,76,0.08)]
+                         flex flex-col"
+            >
+              {/* Type badge */}
+              <span className="inline-block self-start px-3 py-1 rounded-full text-xs font-medium
+                               bg-[#c9a84c]/10 text-[#c9a84c] border border-[#c9a84c]/20 mb-4">
+                {content.typeLabel[language]}
+              </span>
+
+              {/* Arabic text - always shown */}
+              <p className="font-['Amiri'] text-xl mb-4 text-right text-[#fdf8ed]/90 leading-relaxed flex-1" dir="rtl">
                 {content.arabic}
-              </div>
-              <p className="text-gray-700 mb-4">{content.translation}</p>
-              <p className="text-sm text-gray-500">{content.reference}</p>
+              </p>
+
+              <div className="w-8 h-px bg-[#c9a84c]/25 mb-4" />
+
+              {/* English translation - always shown */}
+              <p className="text-[#fdf8ed]/55 text-sm mb-4 leading-relaxed" dir="ltr">
+                {content.translation}
+              </p>
+
+              {/* Reference */}
+              <p className="text-xs text-[#c9a84c]/70 font-medium self-end">{content.reference}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
   )
-} 
+}

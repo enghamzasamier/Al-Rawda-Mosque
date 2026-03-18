@@ -4,15 +4,25 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 
 type Language = 'en' | 'ar'
 
-type TranslationKeys = 
+type TranslationKeys =
   // Navigation
   | 'home' | 'videos' | 'quran' | 'companions' | 'ahadith' | 'mosqueName' | 'menu' | 'close'
+  // Hero / Landing
+  | 'welcomeTitle' | 'welcomeSubtitle' | 'selectGender' | 'male' | 'female' | 'redirecting'
+  // Donation
+  | 'supportMosque' | 'donationText' | 'vodafoneCash' | 'instaPay' | 'copy' | 'copied' | 'openInstaPay' | 'mayAllahReward'
+  // Religious content
+  | 'wordsOfWisdom'
+  // Videos
+  | 'videosForMen' | 'videosForWomen' | 'islamicLecture' | 'womensLecture' | 'watchOnYouTube'
   // Quran Section
   | 'holyQuran' | 'surahs' | 'verses' | 'keyPoints' | 'meccan' | 'medinan' | 'share' | 'readMore'
   | 'surahDetails' | 'revelationType' | 'totalVerses' | 'mainThemes'
   // Companions Section
   | 'tenPromisedParadise' | 'companions' | 'keyAchievements' | 'title' | 'description' | 'achievements'
   | 'virtues' | 'viewDetails' | 'companionDetails' | 'earlyLife' | 'contributions' | 'legacy'
+  // Ahadith
+  | 'ahadithCollection' | 'shareThisSection' | 'scanToShare'
   // Common
   | 'loading' | 'error' | 'back' | 'next' | 'previous' | 'search' | 'filter' | 'sort' | 'all' | 'more' | 'less'
 
@@ -33,6 +43,34 @@ const translations: Record<Language, Record<TranslationKeys, string>> = {
     mosqueName: 'Al-Rawda Mosque',
     menu: 'Menu',
     close: 'Close',
+
+    // Hero / Landing
+    welcomeTitle: 'Welcome to Al-Rawda Mosque',
+    welcomeSubtitle: 'Join us in supporting our community through your generous donations. Every contribution helps us serve better.',
+    selectGender: 'Please select to access the appropriate content:',
+    male: 'Men',
+    female: 'Women',
+    redirecting: 'Redirecting...',
+
+    // Donation
+    supportMosque: 'Support Our Mosque',
+    donationText: 'Your generous donations help us maintain and expand our services to the community. Every contribution makes a difference.',
+    vodafoneCash: 'Vodafone Cash',
+    instaPay: 'InstaPay',
+    copy: 'Copy',
+    copied: 'Copied!',
+    openInstaPay: 'Open InstaPay',
+    mayAllahReward: 'May Allah reward you for your generosity',
+
+    // Religious content
+    wordsOfWisdom: 'Words of Wisdom',
+
+    // Videos
+    videosForMen: 'Videos for Men',
+    videosForWomen: 'Videos for Women',
+    islamicLecture: 'Islamic Lecture',
+    womensLecture: "Women's Lecture",
+    watchOnYouTube: 'Watch on YouTube',
 
     // Quran Section
     holyQuran: 'The Holy Quran',
@@ -61,6 +99,11 @@ const translations: Record<Language, Record<TranslationKeys, string>> = {
     contributions: 'Contributions',
     legacy: 'Legacy',
 
+    // Ahadith
+    ahadithCollection: 'Ahadith Collection',
+    shareThisSection: 'Share This Section',
+    scanToShare: 'Scan to share this section',
+
     // Common
     loading: 'Loading...',
     error: 'Error',
@@ -72,7 +115,7 @@ const translations: Record<Language, Record<TranslationKeys, string>> = {
     sort: 'Sort',
     all: 'All',
     more: 'More',
-    less: 'Less'
+    less: 'Less',
   },
   ar: {
     // Navigation
@@ -84,6 +127,34 @@ const translations: Record<Language, Record<TranslationKeys, string>> = {
     mosqueName: 'مسجد الروضة',
     menu: 'القائمة',
     close: 'إغلاق',
+
+    // Hero / Landing
+    welcomeTitle: 'أهلاً بكم في مسجد الروضة',
+    welcomeSubtitle: 'انضموا إلينا في دعم مجتمعنا من خلال تبرعاتكم الكريمة. كل مساهمة تساعدنا على خدمتكم بشكل أفضل.',
+    selectGender: 'يرجى الاختيار للوصول إلى المحتوى المناسب:',
+    male: 'الرجال',
+    female: 'النساء',
+    redirecting: 'جاري التحويل...',
+
+    // Donation
+    supportMosque: 'دعم مسجدنا',
+    donationText: 'تساعدنا تبرعاتكم الكريمة في الحفاظ على خدماتنا وتوسيعها للمجتمع. كل مساهمة تصنع الفارق.',
+    vodafoneCash: 'فودافون كاش',
+    instaPay: 'انستا باي',
+    copy: 'نسخ',
+    copied: 'تم النسخ!',
+    openInstaPay: 'فتح انستا باي',
+    mayAllahReward: 'جزاكم الله خيراً على كرمكم',
+
+    // Religious content
+    wordsOfWisdom: 'كلمات الحكمة',
+
+    // Videos
+    videosForMen: 'فيديوهات للرجال',
+    videosForWomen: 'فيديوهات للنساء',
+    islamicLecture: 'محاضرة إسلامية',
+    womensLecture: 'محاضرة نسائية',
+    watchOnYouTube: 'شاهد على يوتيوب',
 
     // Quran Section
     holyQuran: 'القرآن الكريم',
@@ -112,6 +183,11 @@ const translations: Record<Language, Record<TranslationKeys, string>> = {
     contributions: 'المساهمات',
     legacy: 'الإرث',
 
+    // Ahadith
+    ahadithCollection: 'مجموعة الأحاديث',
+    shareThisSection: 'مشاركة هذا القسم',
+    scanToShare: 'امسح للمشاركة',
+
     // Common
     loading: 'جاري التحميل...',
     error: 'خطأ',
@@ -123,42 +199,44 @@ const translations: Record<Language, Record<TranslationKeys, string>> = {
     sort: 'ترتيب',
     all: 'الكل',
     more: 'المزيد',
-    less: 'أقل'
-  }
+    less: 'أقل',
+  },
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    // Check if we're in the browser environment
-    if (typeof window !== 'undefined') {
-      // Get the saved language from localStorage or default to 'en'
-      const savedLanguage = localStorage.getItem('preferredLanguage');
-      return (savedLanguage === 'en' || savedLanguage === 'ar') ? savedLanguage as Language : 'en';
-    }
-    return 'en';
-  });
+  const [language, setLanguage] = useState<Language>('ar')
 
-  // Effect to sync language changes with localStorage
+  // On mount, read from localStorage and apply to html element
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('preferredLanguage', language);
+      const saved = localStorage.getItem('preferredLanguage')
+      const lang: Language = (saved === 'en' || saved === 'ar') ? saved : 'ar'
+      setLanguage(lang)
     }
-  }, [language]);
+  }, [])
+
+  // Apply dir and lang to html element whenever language changes
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = language
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr'
+      localStorage.setItem('preferredLanguage', language)
+    }
+  }, [language])
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'ar' : 'en');
+    setLanguage(prev => prev === 'en' ? 'ar' : 'en')
   }
 
-  const t = (key: string) => {
-    // Safe access to translations with fallback to the key itself
+  const t = (key: string): string => {
     try {
-      const translation = translations[language][key as TranslationKeys];
-      return translation || key;
-    } catch (error) {
-      console.warn(`Translation missing for key: ${key}`);
-      return key;
+      const translation = translations[language][key as TranslationKeys]
+      return translation || key
+    } catch {
+      console.warn(`Translation missing for key: ${key}`)
+      return key
     }
   }
 
@@ -175,4 +253,4 @@ export function useLanguage() {
     throw new Error('useLanguage must be used within a LanguageProvider')
   }
   return context
-} 
+}

@@ -1,17 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Amiri:wght@400;700&family=Reem+Kufi&family=Cairo:wght@400;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-beige: #f5f5dc;
-  --color-deep-green: #1b4332;
+  --gold-primary: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dark: #8b6914;
+  --gold-deep: #6b4f0f;
+  --cream: #fdf8ed;
+  --cream-dark: #f5edcf;
+  --dark-bg: #1a1208;
+  --dark-surface: #2a1f0e;
+  --dark-card: #362910;
 }
 
 @layer base {
   body {
-    @apply bg-[#f5f5dc] text-[#1b4332];
+    @apply bg-[#fdf8ed] text-[#2a1f0e];
     font-family: 'Merriweather', serif;
   }
 
@@ -30,29 +35,81 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-[#1b4332] text-[#f5f5dc] px-6 py-3 rounded-lg 
-           transition-all duration-300 hover:shadow-lg hover:scale-105
-           focus:outline-none focus:ring-2 focus:ring-[#1b4332] focus:ring-opacity-50;
+    @apply bg-[#c9a84c] text-[#1a1208] px-6 py-3 rounded-lg 
+           transition-all duration-300 hover:shadow-lg hover:scale-105 font-semibold
+           focus:outline-none focus:ring-2 focus:ring-[#c9a84c] focus:ring-opacity-50;
+  }
+
+  .btn-primary:hover {
+    background-color: #e8c97a;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-md p-6 
-           transition-all duration-300 hover:shadow-xl;
+    @apply bg-white rounded-xl shadow-md p-6 
+           transition-all duration-300 hover:shadow-xl border border-[#e8c97a]/30;
   }
 
   .arabic-calligraphy {
-    @apply font-['Reem_Kufi'] text-4xl md:text-6xl;
+    @apply font-['Reem_Kufi'] text-4xl md:text-6xl text-[#c9a84c];
+  }
+
+  /* Sidebar styles */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-[#fdf8ed]/80 
+           transition-all duration-200 hover:bg-[#c9a84c]/20 hover:text-[#c9a84c];
+  }
+
+  .sidebar-link.active {
+    @apply bg-[#c9a84c]/30 text-[#c9a84c] font-semibold;
   }
 }
 
 /* Custom animations */
 @keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes overlayFade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 .animate-fade-in {
-  animation: fadeIn 1s ease-in;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.animate-overlay-fade {
+  animation: overlayFade 0.3s ease-out forwards;
+}
+
+/* Islamic pattern overlay */
+.islamic-pattern-bg {
+  background-color: #1a1208;
+  background-image: url('/islamic-pattern.svg');
+  background-size: 200px;
+  background-repeat: repeat;
+}
+
+/* Gold gradient */
+.gold-gradient {
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c97a 50%, #c9a84c 100%);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #c9a84c, #e8c97a, #c9a84c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Parallax effect */
@@ -72,4 +129,25 @@
   .text-balance {
     text-wrap: balance;
   }
-} 
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 40;
+  backdrop-filter: blur(2px);
+}
+
+/* Main content when sidebar is open */
+.main-with-sidebar {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .main-with-sidebar {
+    margin-left: 260px;
+  }
+}

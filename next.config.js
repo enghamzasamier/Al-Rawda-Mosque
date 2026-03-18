@@ -1,13 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    domains: ['placehold.co', 'images.unsplash.com'],
-  },
-  // Enable static exports for Vercel
-  output: 'standalone',
-  // Add other configurations here if needed
-};
+  // Static export = pre-rendered HTML served from CDN = ZERO serverless compute on Vercel
+  output: 'export',
 
-module.exports = nextConfig; 
+  reactStrictMode: true,
+  compress: true,
+  poweredByHeader: false,
+
+  images: {
+    // Required for static export (no Next.js image optimization server)
+    unoptimized: true,
+  },
+
+  // Aggressively disable telemetry & noisy headers
+  experimental: {},
+}
+
+module.exports = nextConfig
