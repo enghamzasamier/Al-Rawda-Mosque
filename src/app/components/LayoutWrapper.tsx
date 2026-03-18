@@ -13,7 +13,7 @@ function TopNavbar() {
                        flex items-center justify-between px-4">
       {/* Logo + name - left */}
       <Link href="/" className="flex items-center gap-2.5">
-        <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-[#fdf8ed]/10 ring-1 ring-[#c9a84c]/30 p-0.5">
+        <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-white ring-1 ring-[#c9a84c]/30 p-0.5">
           <Image
             src="/images/logo.avif"
             alt="Al-Rawda Mosque"

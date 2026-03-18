@@ -52,16 +52,6 @@
   .arabic-calligraphy {
     @apply font-['Reem_Kufi'] text-4xl md:text-6xl text-[#c9a84c];
   }
-
-  /* Sidebar styles */
-  .sidebar-link {
-    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-[#fdf8ed]/80 
-           transition-all duration-200 hover:bg-[#c9a84c]/20 hover:text-[#c9a84c];
-  }
-
-  .sidebar-link.active {
-    @apply bg-[#c9a84c]/30 text-[#c9a84c] font-semibold;
-  }
 }
 
 /* Custom animations */
@@ -128,26 +118,5 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-}
-
-/* Sidebar overlay for mobile */
-.sidebar-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 40;
-  backdrop-filter: blur(2px);
-}
-
-/* Main content when sidebar is open */
-.main-with-sidebar {
-  margin-left: 0;
-  transition: margin-left 0.3s ease;
-}
-
-@media (min-width: 1024px) {
-  .main-with-sidebar {
-    margin-left: 260px;
   }
 }

@@ -35,12 +35,10 @@ export default function ReligiousContent() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl mb-3 font-['Cormorant_Garamond'] text-[#fdf8ed]">
-            {t('wordsOfWisdom')}
+            Words of Wisdom
           </h2>
           <div className="arabic-calligraphy text-3xl mb-1">الحكمة ضالة المؤمن</div>
-          {language === 'en' && (
-            <p className="text-[#fdf8ed]/40 text-sm italic">Wisdom is the lost property of the believer</p>
-          )}
+          <p className="text-[#fdf8ed]/40 text-sm italic">Wisdom is the lost property of the believer</p>
           <div className="w-16 h-px bg-[#c9a84c]/50 mx-auto mt-5" />
         </div>
 
@@ -53,11 +51,17 @@ export default function ReligiousContent() {
                          hover:shadow-[0_0_20px_rgba(201,168,76,0.08)]
                          flex flex-col"
             >
-              {/* Type badge */}
-              <span className="inline-block self-start px-3 py-1 rounded-full text-xs font-medium
-                               bg-[#c9a84c]/10 text-[#c9a84c] border border-[#c9a84c]/20 mb-4">
-                {content.typeLabel[language]}
-              </span>
+              {/* Type badge - bilingual */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block px-3 py-1 rounded-full text-[10px] font-medium
+                                 bg-[#c9a84c]/10 text-[#c9a84c] border border-[#c9a84c]/20">
+                  {content.typeLabel.ar}
+                </span>
+                <span className="inline-block px-3 py-1 rounded-full text-[10px] font-medium
+                                 bg-[#c9a84c]/10 text-[#c9a84c] border border-[#c9a84c]/20 capitalize">
+                  {content.typeLabel.en}
+                </span>
+              </div>
 
               {/* Arabic text - always shown */}
               <p className="font-['Amiri'] text-xl mb-4 text-right text-[#fdf8ed]/90 leading-relaxed flex-1" dir="rtl">
