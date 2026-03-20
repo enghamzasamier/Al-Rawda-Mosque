@@ -21,6 +21,10 @@ const amiri = Amiri({
 export const metadata: Metadata = {
   title: 'مسجد الروضة | Al-Rawda Mosque',
   description: 'الموقع الرسمي لمسجد الروضة - The Official Site of Al-Rawda Mosque',
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/images/logo.avif',
+  },
 }
 
 export default function RootLayout({
