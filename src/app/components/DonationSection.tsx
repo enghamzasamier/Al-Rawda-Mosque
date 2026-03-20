@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import QRCodeComponent from './QRCode'
 
-const INSTAPAY_URL = 'https://ipn.eg/S/hamzasamir97/instapay/vMFGMP'
+const INSTAPAY_URL = 'https://ipn.eg/S/khaledyosry87/instapay/7dZCSC'
 
 export default function DonationSection() {
   const [copied, setCopied] = useState(false)
