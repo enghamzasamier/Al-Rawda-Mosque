@@ -50,6 +50,19 @@ export default function RootLayout({
             {children}
           </LayoutWrapper>
         </LanguageProvider>
+
+        {/* Register Service Worker client-side only */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js');
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   )

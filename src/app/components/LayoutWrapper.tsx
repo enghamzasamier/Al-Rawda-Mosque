@@ -12,7 +12,7 @@ function TopNavbar() {
                        bg-[#1a1208] border-b border-[#c9a84c]/20
                        flex items-center justify-between px-4">
       {/* Logo + name - left */}
-      <Link href="/" className="flex items-center gap-2.5">
+      <Link href="/" className="flex items-center gap-2.5" prefetch={false}>
         <div className="relative w-9 h-9 rounded-lg overflow-hidden bg-white ring-1 ring-[#c9a84c]/30 p-0.5">
           <Image
             src="/images/logo.avif"
