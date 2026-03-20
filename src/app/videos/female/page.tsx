@@ -2,6 +2,7 @@
 
 import Footer from '@/app/components/Footer'
 import QRCodeComponent from '@/app/components/QRCode'
+import VideoItem from '@/app/components/VideoItem'
 import { useLanguage } from '@/app/context/LanguageContext'
 
 const femaleVideos = [
@@ -52,14 +53,12 @@ export default function FemaleVideosPage() {
                   </h2>
                 </div>
 
-                <div className="w-full aspect-video bg-[#1a1208]">
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&modestbranding=1`}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
+                <div className="w-full aspect-video">
+                  <VideoItem 
+                    id={video.id} 
                     title={isRTL ? video.titleAr : video.titleEn}
+                    platform="youtube"
+                    originalUrl={watchUrl}
                   />
                 </div>
 
