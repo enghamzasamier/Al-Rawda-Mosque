@@ -23,7 +23,20 @@ export const metadata: Metadata = {
   description: 'الموقع الرسمي لمسجد الروضة - The Official Site of Al-Rawda Mosque',
   manifest: '/manifest.json',
   icons: {
-    icon: '/images/logo.avif',
+    icon: [
+      { url: '/images/logo.avif' },
+      { url: '/favicon.ico', rel: 'shortcut icon' },
+    ],
+    apple: [
+      { url: '/images/logo.avif' },
+      { url: '/images/logo.avif', sizes: '180x180', type: 'image/avif' },
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/images/logo.avif',
+      },
+    ],
   },
 }
 
