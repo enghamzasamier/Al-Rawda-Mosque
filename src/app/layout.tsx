@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Amiri, Merriweather, Reem_Kufi } from 'next/font/google'
+import { Cormorant_Garamond, Amiri } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from './context/LanguageContext'
 import LayoutWrapper from './components/LayoutWrapper'
@@ -18,23 +18,9 @@ const amiri = Amiri({
   display: 'swap',
 })
 
-const merriweather = Merriweather({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-merriweather',
-  display: 'swap',
-})
-
-const reemKufi = Reem_Kufi({
-  subsets: ['arabic'],
-  weight: ['400', '700'],
-  variable: '--font-reem-kufi',
-  display: 'swap',
-})
-
 export const metadata: Metadata = {
   title: 'مسجد الروضة | Al-Rawda Mosque',
-  description: 'الموقع الرسمي لمسجد الروضة - Welcome to Al-Rawda Mosque',
+  description: 'الموقع الرسمي لمسجد الروضة - The Official Site of Al-Rawda Mosque',
 }
 
 export default function RootLayout({
@@ -44,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar">
-      <body className={`${cormorant.variable} ${amiri.variable} ${merriweather.variable} ${reemKufi.variable} font-['Merriweather',serif]`}>
+      <body className={`${cormorant.variable} ${amiri.variable} font-['Cormorant_Garamond',serif]`}>
         <LanguageProvider>
           <LayoutWrapper>
             {children}

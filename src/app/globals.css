@@ -17,7 +17,7 @@
 @layer base {
   body {
     @apply bg-[#fdf8ed] text-[#2a1f0e];
-    font-family: 'Merriweather', serif;
+    font-family: 'Cormorant Garamond', serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -29,7 +29,7 @@
   }
 
   .arabic-heading {
-    font-family: 'Reem Kufi', sans-serif;
+    font-family: 'Amiri', serif;
   }
 }
 
@@ -50,7 +50,7 @@
   }
 
   .arabic-calligraphy {
-    @apply font-['Reem_Kufi'] text-4xl md:text-6xl text-[#c9a84c];
+    @apply font-['Amiri'] font-bold text-4xl md:text-6xl text-[#c9a84c];
   }
 }
 

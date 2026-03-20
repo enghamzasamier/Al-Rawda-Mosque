@@ -13,7 +13,20 @@ const nextConfig = {
   },
 
   // Aggressively disable telemetry & noisy headers
-  experimental: {},
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
+
+  webpack: (config) => {
+    // Force a single JS bundle to minimize Edge Requests
+    config.optimization.splitChunks = {
+      cacheGroups: {
+        default: false,
+      },
+    }
+    config.optimization.runtimeChunk = false
+    return config
+  },
 }
 
 module.exports = nextConfig

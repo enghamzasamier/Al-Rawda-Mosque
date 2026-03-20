@@ -1,11 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
-
-const QRCodeSVG = dynamic(() => import('qrcode.react').then(mod => mod.QRCodeSVG), {
-  ssr: false
-})
+import { QRCodeSVG } from 'qrcode.react'
 
 interface QRCodeProps {
   url: string
